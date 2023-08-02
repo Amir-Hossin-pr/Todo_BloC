@@ -9,8 +9,16 @@ class TodosListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TodoFilterBloc, TodoFilterState>(
-        builder: (context, state) {
+    return BlocConsumer<TodoFilterBloc, TodoFilterState>(
+        listener: (context, state) {
+      if (state is TodoFilterLoaded) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('${state.filtredTodos.length} Todos Load'),
+          ),
+        );
+      }
+    }, builder: (context, state) {
       if (state is TodoFilterLoading) {
         return const Center(child: CircularProgressIndicator());
       }
