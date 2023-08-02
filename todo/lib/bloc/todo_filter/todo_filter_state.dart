@@ -4,7 +4,6 @@ abstract class TodoFilterState extends Equatable {}
 
 class TodoFilterLoading extends TodoFilterState {
   @override
-  // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
 }
 
@@ -18,7 +17,6 @@ class TodoFilterLoaded extends TodoFilterState {
   });
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
         filtredTodos,
         todoFilter,
