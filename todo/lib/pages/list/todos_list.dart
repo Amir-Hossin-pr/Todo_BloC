@@ -20,9 +20,12 @@ class TodosListView extends StatelessWidget {
             itemBuilder: (context, index) {
               final todo = state.todos[index];
               return ListTile(
-                leading: (todo.isCompelete ?? false)
-                    ? const Icon(Icons.check_circle_outline)
-                    : const Icon(Icons.circle_outlined),
+                leading: IconButton(
+                  onPressed: () => _changeTodo(context, todo),
+                  icon: todo.isCompelete
+                      ? const Icon(Icons.check_circle_outline)
+                      : const Icon(Icons.circle_outlined),
+                ),
                 title: Text(todo.title),
                 subtitle: Text(todo.description),
                 trailing: IconButton(
@@ -40,6 +43,15 @@ class TodosListView extends StatelessWidget {
         );
       }
     });
+  }
+
+  void _changeTodo(BuildContext context, TodoModel todo) {
+    context.read<TodoBloc>().add(
+          UpdateTodo(
+              todo: todo.copyWith(
+            isCompelete: !todo.isCompelete,
+          )),
+        );
   }
 
   void _removeTodo(BuildContext context, TodoModel todo) {

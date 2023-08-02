@@ -4,8 +4,8 @@ class TodoModel extends Equatable {
   final String id;
   final String title;
   final String description;
-  final bool? isCompelete;
-  final bool? isCancled;
+  final bool isCompelete;
+  final bool isCancled;
 
   const TodoModel({
     required this.id,

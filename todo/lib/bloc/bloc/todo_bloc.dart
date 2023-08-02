@@ -29,7 +29,17 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     }
   }
 
-  void _onUpdateTodo(UpdateTodo event, Emitter<TodoState> emit) {}
+  void _onUpdateTodo(UpdateTodo event, Emitter<TodoState> emit) {
+    final state = this.state;
+    if (state is TodoLoaded) {
+      final todos = List<TodoModel>.from(state.todos);
+      final index = todos.indexWhere((todo) => todo.id == event.todo.id);
+      todos[index] = event.todo;
+      emit(
+        TodoLoaded(todos: todos),
+      );
+    }
+  }
 
   void _onDeleteTodo(DeleteTodo event, Emitter<TodoState> emit) {
     final state = this.state;
