@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo/pages/list/todos_list.dart';
+import 'package:todo/pages/upsert/upsert_todo.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,10 +14,18 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.lightBlue,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => _addTodo(context),
         child: const Icon(Icons.add),
       ),
       body: TodosListView(),
     );
+  }
+
+  void _addTodo(BuildContext context) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => UpsertTodoScreen(),
+        ));
   }
 }
