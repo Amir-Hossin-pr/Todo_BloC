@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo/bloc/bloc/todo_bloc.dart';
+import 'package:todo/bloc/todo/todo_bloc.dart';
 import 'package:todo/models/todo.dart';
 import 'package:todo/pages/widget/button.dart';
 import 'package:todo/pages/widget/input.dart';
