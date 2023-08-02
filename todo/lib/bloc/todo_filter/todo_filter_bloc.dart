@@ -55,7 +55,7 @@ class TodoFilterBloc extends Bloc<TodoFilterEvent, TodoFilterState> {
           case TodoFilter.completed:
             return todo.isCompelete;
           case TodoFilter.pending:
-            return !(todo.isCompelete && todo.isCancled);
+            return !todo.isCompelete;
           default:
             return true;
         }
