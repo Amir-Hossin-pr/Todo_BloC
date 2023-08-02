@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/bloc/bloc/todo_bloc.dart';
+import 'package:todo/models/todo.dart';
 
 class TodosListView extends StatelessWidget {
   const TodosListView({super.key});
@@ -24,6 +25,11 @@ class TodosListView extends StatelessWidget {
                     : const Icon(Icons.circle_outlined),
                 title: Text(todo.title),
                 subtitle: Text(todo.description),
+                trailing: IconButton(
+                  onPressed: () => _removeTodo(context, todo),
+                  icon: const Icon(Icons.remove_circle_outline,
+                      color: Colors.red),
+                ),
               );
             },
           ),
@@ -34,5 +40,11 @@ class TodosListView extends StatelessWidget {
         );
       }
     });
+  }
+
+  void _removeTodo(BuildContext context, TodoModel todo) {
+    context.read<TodoBloc>().add(
+          DeleteTodo(todo: todo),
+        );
   }
 }
