@@ -19,10 +19,11 @@ class TodosListView extends StatelessWidget {
             itemBuilder: (context, index) {
               final todo = state.todos[index];
               return ListTile(
-                title: Text(todo.title),
                 leading: (todo.isCompelete ?? false)
                     ? const Icon(Icons.check_circle_outline)
                     : const Icon(Icons.circle_outlined),
+                title: Text(todo.title),
+                subtitle: Text(todo.description),
               );
             },
           ),
