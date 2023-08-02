@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/bloc/todo/todo_bloc.dart';
+import 'package:todo/bloc/todo_filter/todo_filter_bloc.dart';
 import 'package:todo/models/todo.dart';
 
 class TodosListView extends StatelessWidget {
@@ -8,17 +9,18 @@ class TodosListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TodoBloc, TodoState>(builder: (context, state) {
-      if (state is TodoLoading) {
+    return BlocBuilder<TodoFilterBloc, TodoFilterState>(
+        builder: (context, state) {
+      if (state is TodoFilterLoading) {
         return const Center(child: CircularProgressIndicator());
       }
-      if (state is TodoLoaded) {
+      if (state is TodoFilterLoaded) {
         return Container(
           margin: const EdgeInsets.all(10),
           child: ListView.builder(
-            itemCount: state.todos.length,
+            itemCount: state.filtredTodos.length,
             itemBuilder: (context, index) {
-              final todo = state.todos[index];
+              final todo = state.filtredTodos[index];
               return ListTile(
                 leading: IconButton(
                   onPressed: () => _changeTodo(context, todo),
