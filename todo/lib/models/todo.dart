@@ -4,19 +4,16 @@ class TodoModel extends Equatable {
   final String id;
   final String title;
   final String description;
-  bool? isCompelete;
-  bool? isCancled;
+  final bool? isCompelete;
+  final bool? isCancled;
 
-  TodoModel({
+  const TodoModel({
     required this.id,
     required this.title,
     required this.description,
-    this.isCancled,
-    this.isCompelete,
-  }) {
-    isCancled = false;
-    isCompelete = false;
-  }
+    this.isCancled = false,
+    this.isCompelete = false,
+  });
 
   TodoModel copyWith(
           {String? id,
@@ -33,7 +30,6 @@ class TodoModel extends Equatable {
       );
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
         id,
         title,
@@ -43,7 +39,7 @@ class TodoModel extends Equatable {
       ];
 
   static List<TodoModel> todos = [
-    TodoModel(id: '1', title: 'Todo', description: 'Nothing'),
-    TodoModel(id: '2', title: 'Todo 2', description: 'Nothing 2'),
+    const TodoModel(id: '1', title: 'Todo', description: 'Nothing'),
+    const TodoModel(id: '2', title: 'Todo 2', description: 'Nothing 2'),
   ];
 }
