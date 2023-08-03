@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:todo/bloc/todo_filter/todo_filter_bloc.dart';
 import 'package:todo/models/todo_filter.dart';
 import 'package:todo/pages/list/todos_list.dart';
-import 'package:todo/pages/upsert/upsert_todo.dart';
+import 'package:todo/router/router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,36 +18,38 @@ class HomeScreen extends StatelessWidget {
           title: const Text('Todo App'),
           elevation: 4,
           backgroundColor: Colors.lightBlue,
-          bottom:
-              TabBar(onTap: (index) => _changeTab(context, index), tabs: const [
-            Tab(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(Icons.more_horiz),
-                  Text('All'),
-                ],
+          bottom: TabBar(
+            onTap: (index) => _changeTab(context, index),
+            tabs: const [
+              Tab(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.more_horiz),
+                    Text('All'),
+                  ],
+                ),
               ),
-            ),
-            Tab(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(Icons.pending_actions),
-                  Text('Pending'),
-                ],
+              Tab(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.pending_actions),
+                    Text('Pending'),
+                  ],
+                ),
               ),
-            ),
-            Tab(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(Icons.check),
-                  Text('Completed'),
-                ],
-              ),
-            )
-          ]),
+              Tab(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.check),
+                    Text('Completed'),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () => _addTodo(context),
@@ -64,11 +67,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   void _addTodo(BuildContext context) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => UpsertTodoScreen(),
-        ));
+    GoRouter.of(context).push(upsert);
   }
 
   void _changeTab(BuildContext context, int index) {

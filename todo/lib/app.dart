@@ -4,6 +4,8 @@ import 'package:todo/bloc/todo/todo_bloc.dart';
 import 'package:todo/bloc/todo_filter/todo_filter_bloc.dart';
 import 'package:todo/models/todo.dart';
 import 'package:todo/pages/home/index.dart';
+import 'package:go_router/go_router.dart';
+import 'package:todo/router/router.dart';
 
 class TodoApp extends StatelessWidget {
   const TodoApp({super.key});
@@ -26,13 +28,13 @@ class TodoApp extends StatelessWidget {
           ),
         )
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: HomeScreen(),
+        routerConfig: router,
       ),
     );
   }
